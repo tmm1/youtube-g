@@ -31,7 +31,9 @@ class YouTubeG
       #   :category
       #   :keywords
       #   :private
+      #   :unlisted
       # Specifying :private will make the video private, otherwise it will be public.
+      # Specifying :unlisted will only allow access to those with a link to the video's URL
       #
       # When one of the fields is invalid according to YouTube,
       # an UploadError will be raised. Its message contains a list of newline separated
@@ -78,6 +80,7 @@ class YouTubeG
       #   :keywords
       # The following are optional attributes:
       #   :private
+      #   :unlisted
       # When the authentication credentials are incorrect, an AuthenticationError will be raised.
       def update(video_id, options)
         @opts = options
@@ -195,6 +198,7 @@ class YouTubeG
             mg.tag!('media:category', @opts[:category], :scheme => "http://gdata.youtube.com/schemas/2007/categories.cat")
             mg.tag!('yt:private') if @opts[:private]
           end
+          m.tag!('yt:accessControl', :action => "list", :permission => "denied") if @opts[:unlisted]
         end.to_s
       end
       
