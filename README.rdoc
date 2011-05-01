@@ -1,0 +1,5 @@
+Hello all,
+
+This repository has moved to http://github.com/kylejginavan/youtube_it.  The master branch that was here is the v0.0.3 branch in the new repository or the local zip file.
+
+-kylejginavan
